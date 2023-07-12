@@ -8,39 +8,8 @@
   </style>
 </head>
 <body>
-  <!-- Your video elements -->
- <script data-url="https://k2s.cc/file/6fb639daf321d" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/92bfd2bf0054b" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/ba58c9d9bb615" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/57bc42de9aeb1" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/6e45ca38f8853" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/fce7b9586fc14" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/5c6ba71e801f1" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/8e09195560948" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/130982d66c431" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/8b0b3167c36e0" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/e35b3d9f577ab" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/be24a078f9db0" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/0513edbdf9ac1" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/ad2d988c33477" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/032c8b23ac0b0" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/f9a290009c448" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/737dd470595c1" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/dd9da1e219bb5" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/ea77c832a6a83" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/27c30e8ef189e" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/eaa34c500f765" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/d570918641193" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/3f02c730d6dfa" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/d5237e9a7f020" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/3005bdc5158aa" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/f96b670898f23" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/6ab1cb825e7d1" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/404d88a62b0a8" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/c0864fa5c4f64" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/6d4b5cb2d20c3" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-  <!-- ... -->
+  <!-- Your video container -->
+  <div id="video-container"></div>
 
   <!-- Pagination structure -->
   <div id="pagination"></div>
@@ -48,9 +17,42 @@
   <script>
     // Configuration
     var videosPerPage = 10; // Number of videos per page
-    var iframes = Array.from(document.querySelectorAll('iframe'));
-    var totalPages = Math.ceil(iframes.length / videosPerPage);
-    var currentPage = 1;
+    var videoData = [
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      { url: 'https://k2s.cc/file/6fb639daf321d', title: 'Video 1' },
+      { url: 'https://k2s.cc/file/dd9da1e219bb5', title: 'Video 2' },
+      // Add more video data objects as needed
+    ];
+
+    // Calculate the total number of pages
+    var totalPages = Math.ceil(videoData.length / videosPerPage);
 
     // Generate pagination links/buttons
     var paginationElement = document.getElementById('pagination');
@@ -62,29 +64,32 @@
       paginationElement.appendChild(link);
     }
 
-    // Initial video display
-    displayVideos();
-
     // Function to handle page change
     function changePage(event) {
       event.preventDefault();
-      currentPage = parseInt(event.target.textContent);
-      displayVideos();
+      var pageNumber = parseInt(event.target.textContent);
+      displayVideos(pageNumber);
     }
 
-    // Function to display videos for the current page
-    function displayVideos() {
-      var startIndex = (currentPage - 1) * videosPerPage;
+    // Function to display videos for the given page number
+    function displayVideos(pageNumber) {
+      var startIndex = (pageNumber - 1) * videosPerPage;
       var endIndex = startIndex + videosPerPage;
 
-      iframes.forEach(function (iframe, index) {
-        if (index >= startIndex && index < endIndex) {
-          iframe.classList.remove('hidden');
-        } else {
-          iframe.classList.add('hidden');
-        }
-      });
+      var videoContainer = document.getElementById('video-container');
+      videoContainer.innerHTML = ''; // Clear existing videos
+
+      for (var i = startIndex; i < endIndex && i < videoData.length; i++) {
+        var videoDataItem = videoData[i];
+        var videoScript = document.createElement('script');
+        videoScript.src = videoDataItem.url;
+        videoScript.setAttribute('data-title', videoDataItem.title);
+        videoContainer.appendChild(videoScript);
+      }
     }
+
+    // Initial video display on the first page
+    displayVideos(1);
   </script>
 </body>
 </html>
