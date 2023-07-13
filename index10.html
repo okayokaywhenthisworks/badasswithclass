@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Embedded Videos with Automatic Pages</title>
+    <style>
+        .video-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .plyr__video-embed {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-wrapper">
+        <div id="videoContainer"></div>
+        <div id="pagination"></div>
+    </div>
+
+    <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+    <script>
+        var videoData = [
+            {
+                url: "https://k2s.cc/file/d0bd38eec0545",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/6fb639daf321d",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/92bfd2bf0054b",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/1f7bd818baa8c",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/ba58c9d9bb615",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/57bc42de9aeb1",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/6e45ca38f8853",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/fce7b9586fc14",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/5c6ba71e801f1",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/8e09195560948",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/130982d66c431",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/8b0b3167c36e0",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/e35b3d9f577ab",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/be24a078f9db0",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/0513edbdf9ac1",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/ad2d988c33477",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/032c8b23ac0b0",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/f9a290009c448",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/737dd470595c1",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/dd9da1e219bb5",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/ea77c832a6a83",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/27c30e8ef189e",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/eaa34c500f765",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/d570918641193",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/3f02c730d6dfa",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/d5237e9a7f020",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/3005bdc5158aa",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/f96b670898f23",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/6ab1cb825e7d1",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/404d88a62b0a8",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/c0864fa5c4f64",
+                width: "500px",
+                height: "56.25%"
+            },
+            {
+                url: "https://k2s.cc/file/6d4b5cb2d20c3",
+                width: "500px",
+                height: "56.25%"
+            }
+        ];
+
+        var videosPerPage = 3;
+        var currentPage = 1;
+        var totalPages = Math.ceil(videoData.length / videosPerPage);
+
+        function displayVideos(page) {
+            var startIndex = (page - 1) * videosPerPage;
+            var endIndex = startIndex + videosPerPage;
+            var videosToShow = videoData.slice(startIndex, endIndex);
+
+            var container = document.getElementById("videoContainer");
+            container.innerHTML = "";
+
+            for (var i = 0; i < videosToShow.length; i++) {
+                var video = videosToShow[i];
+
+                var videoDiv = document.createElement("div");
+                videoDiv.className = "video-container";
+
+                var videoIframe = document.createElement("iframe");
+                videoIframe.setAttribute("src", video.url);
+                videoIframe.setAttribute("width", video.width);
+                videoIframe.setAttribute("height", video.height);
+
+                videoDiv.appendChild(videoIframe);
+                container.appendChild(videoDiv);
+            }
+        }
+
+        function createPagination() {
+            var pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            for (var i = 1; i <= totalPages; i++) {
+                var button = document.createElement("button");
+                button.textContent = i;
+                button.addEventListener("click", function(page) {
+                    return function() {
+                        goToPage(page);
+                    };
+                }(i));
+                pagination.appendChild(button);
+            }
+        }
+
+        function goToPage(page) {
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                displayVideos(currentPage);
+                updatePagination();
+            }
+        }
+
+        function updatePagination() {
+            var buttons = document.getElementById("pagination").getElementsByTagName("button");
+
+            for (var i = 0; i < buttons.length; i++) {
+                var button = buttons[i];
+
+                if (parseInt(button.textContent) === currentPage) {
+                    button.classList.add("active");
+                } else {
+                    button.classList.remove("active");
+                }
+            }
+        }
+
+        displayVideos(currentPage);
+        createPagination();
+        updatePagination();
+    </script>
+</body>
+</html>
