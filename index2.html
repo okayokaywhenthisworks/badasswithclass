@@ -18,8 +18,8 @@
 
     <script>
         // Define an array of embedded video snippets
-        var videoSnippets = [
-<script data-url="https://k2s.cc/file/6fb639daf321d" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+        var videoSnippets = `
+        <script data-url="https://k2s.cc/file/6fb639daf321d" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
 <script data-url="https://k2s.cc/file/92bfd2bf0054b" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
 <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
 <script data-url="https://k2s.cc/file/ba58c9d9bb615" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
@@ -56,8 +56,14 @@
 <script data-url="https://k2s.cc/file/388aef8c8e32e" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
 <script data-url="https://k2s.cc/file/5ca0d2dcfb491" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
 <script data-url="https://k2s.cc/file/6eadbb74aed0c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
-<script data-url="https://k2s.cc/file/d33f8c447507c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>       
-    ];
+<script data-url="https://k2s.cc/file/d33f8c447507c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+        `;
+
+        // Remove leading/trailing white spaces and line breaks
+        videoSnippets = videoSnippets.trim();
+
+        // Split the video snippets into an array
+        videoSnippets = videoSnippets.split('\n');
 
         // Define the number of videos per page
         var videosPerPage = 10;
