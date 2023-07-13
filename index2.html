@@ -49,42 +49,32 @@
     <div class="pagination"></div>
     
     <script>
-        // Define your video snippets in the desired format
-        var videoSnippets = [
-            '<script data-url="https://k2s.cc/file/f96b670898f23" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-            '<script data-url="https://k2s.cc/file/your-video-url-2" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-            '<script data-url="https://k2s.cc/file/your-video-url-3" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-            // Add more video snippets here
+        // Define your video URLs
+        var videoUrls = [
+            "https://k2s.cc/file/f96b670898f23",
+            // Add more video URLs here
         ];
         
         var container = document.querySelector('.video-container');
         var pagination = document.querySelector('.pagination');
-        var videosPerPage = 3; // Number of videos to display per page
         var currentPage = 0;
         
-        function displayVideos(page) {
+        function loadVideo(url) {
+            var iframe = document.createElement('iframe');
+            iframe.src = url;
             container.innerHTML = '';
-            
-            var startIndex = page * videosPerPage;
-            var endIndex = startIndex + videosPerPage;
-            var videosToDisplay = videoSnippets.slice(startIndex, endIndex);
-            
-            videosToDisplay.forEach(function(snippet) {
-                container.innerHTML += snippet;
-            });
+            container.appendChild(iframe);
         }
         
         function updatePagination() {
             pagination.innerHTML = '';
-            var totalPages = Math.ceil(videoSnippets.length / videosPerPage);
-            
-            for (var i = 0; i < totalPages; i++) {
+            for (var i = 0; i < videoUrls.length; i++) {
                 var button = document.createElement('button');
                 button.textContent = i + 1;
-                button.addEventListener('click', function (page) {
+                button.addEventListener('click', function (index) {
                     return function () {
-                        currentPage = page;
-                        displayVideos(currentPage);
+                        currentPage = index;
+                        loadVideo(videoUrls[currentPage]);
                         updatePagination();
                     }
                 }(i));
@@ -97,13 +87,11 @@
             }
         }
         
-        function loadInitialPage() {
-            displayVideos(currentPage);
-            updatePagination();
-        }
+        // Load the initial video
+        loadVideo(videoUrls[currentPage]);
         
-        // Load the initial page
-        loadInitialPage();
+        // Update pagination buttons
+        updatePagination();
     </script>
 </body>
 </html>
