@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Embedded Videos Pages</title>
+    <title>Embedded Video Pages</title>
+    <style>
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
+    <div id="pageNavigation"></div>
     <div id="videoContainer"></div>
 
     <script>
@@ -2324,19 +2334,51 @@
 <script data-url="https://k2s.cc/file/6d4b5cb2d20c3" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
         ];
 
-        // Generate HTML pages for each video snippet
-        for (var i = 0; i < videoSnippets.length; i++) {
-            var videoPage = '<!DOCTYPE html>\n<html>\n<head>\n<title>Embedded Video Page ' + (i + 1) + '</title>\n</head>\n<body>\n';
-            videoPage += videoSnippets[i] + '\n';
-            videoPage += '</body>\n</html>';
+        // Define the number of videos per page
+        var videosPerPage = 10;
 
-            // Create an iframe for each generated page
-            var iframe = document.createElement('iframe');
-            iframe.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(videoPage);
-            iframe.width = '100%';
-            iframe.height = '500px';
-            iframe.style.border = 'none';
-            document.getElementById('videoContainer').appendChild(iframe);
+        // Calculate the total number of pages
+        var totalPages = Math.ceil(videoSnippets.length / videosPerPage);
+
+        // Generate navigation links for each page
+        for (var i = 0; i < totalPages; i++) {
+            var link = document.createElement('a');
+            link.href = '#page-' + (i + 1);
+            link.innerHTML = 'Page ' + (i + 1);
+            document.getElementById('pageNavigation').appendChild(link);
+            document.getElementById('pageNavigation').appendChild(document.createTextNode(' | '));
+        }
+
+        // Generate video pages
+        for (var i = 0; i < videoSnippets.length; i++) {
+            if (i % videosPerPage === 0) {
+                var page = document.createElement('div');
+                page.id = 'page-' + ((i / videosPerPage) + 1);
+                page.classList.add('page');
+                document.getElementById('videoContainer').appendChild(page);
+            }
+
+            var video = document.createElement('div');
+            video.innerHTML = '<h2>Video ' + (i + 1) + '</h2>' + videoSnippets[i];
+            document.getElementById('page-' + (Math.floor(i / videosPerPage) + 1)).appendChild(video);
+        }
+
+        // Show the first page by default
+        document.getElementById('page-1').classList.add('active');
+
+        // Handle navigation link clicks
+        var navigationLinks = document.querySelectorAll('#pageNavigation a');
+        for (var i = 0; i < navigationLinks.length; i++) {
+            navigationLinks[i].addEventListener('click', function (event) {
+                event.preventDefault();
+
+                var targetPage = event.target.getAttribute('href').substring(1);
+                var pages = document.getElementsByClassName('page');
+                for (var j = 0; j < pages.length; j++) {
+                    pages[j].classList.remove('active');
+                }
+                document.getElementById(targetPage).classList.add('active');
+            });
         }
     </script>
 </body>
