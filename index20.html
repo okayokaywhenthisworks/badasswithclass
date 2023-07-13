@@ -2370,22 +2370,24 @@
             }
         }
 
-        function createPagination(currentPage) {
-            var pagination = document.getElementById("pagination");
-            pagination.innerHTML = "";
+function createPagination() {
+    var pagination = document.getElementById("pagination");
+    pagination.innerHTML = "";
 
-            var startPage = Math.max(1, currentPage - 4);
-            var endPage = Math.min(totalPages, currentPage + 4);
+    var currentPage = Math.ceil(startIndex / videosPerPage) + 1;
+    var startPage = Math.max(1, currentPage - 4);
+    var endPage = Math.min(totalPages, currentPage + 4);
 
-            for (var i = 1; i <= totalPages; i++) {
-                if (i >= startPage && i <= endPage) {
-                    var pageLink = document.createElement("a");
-                    pageLink.setAttribute("href", "javascript:void(0)");
-                    pageLink.setAttribute("onclick", "displayVideos(" + i + ")");
-                    pageLink.textContent = i;
-                    pagination.appendChild(pageLink);
-                }
-            }
+    for (var i = startPage; i <= endPage; i++) {
+        var pageLink = document.createElement("a");
+        pageLink.setAttribute("href", "javascript:void(0)");
+        pageLink.setAttribute("onclick", "displayVideos(" + i + ")");
+        pageLink.textContent = i;
+
+        pagination.appendChild(pageLink);
+    }
+}
+
         }
 
         displayVideos(1);
