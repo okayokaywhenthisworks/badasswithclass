@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Embedded Videos</title>
+    <style>
+        .video-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-wrapper">
+        <div id="videoContainer"></div>
+    </div>
+
+    <div class="pagination" id="pagination"></div>
+
+    <script>
+        var videoUrls = [
+            "https://k2s.cc/file/d0bd38eec0545",
+            "https://k2s.cc/file/6fb639daf321d",
+            "https://k2s.cc/file/92bfd2bf0054b",
+            "https://k2s.cc/file/1f7bd818baa8c",
+            "https://k2s.cc/file/ba58c9d9bb615",
+            "https://k2s.cc/file/57bc42de9aeb1",
+            "https://k2s.cc/file/6e45ca38f8853",
+            "https://k2s.cc/file/fce7b9586fc14",
+            "https://k2s.cc/file/5c6ba71e801f1",
+            "https://k2s.cc/file/8e09195560948",
+            "https://k2s.cc/file/130982d66c431",
+            "https://k2s.cc/file/8b0b3167c36e0",
+            "https://k2s.cc/file/e35b3d9f577ab",
+            "https://k2s.cc/file/be24a078f9db0",
+            "https://k2s.cc/file/0513edbdf9ac1",
+            "https://k2s.cc/file/ad2d988c33477",
+            "https://k2s.cc/file/032c8b23ac0b0",
+            "https://k2s.cc/file/f9a290009c448",
+            "https://k2s.cc/file/737dd470595c1",
+            "https://k2s.cc/file/dd9da1e219bb5",
+            "https://k2s.cc/file/ea77c832a6a83",
+            "https://k2s.cc/file/27c30e8ef189e",
+            "https://k2s.cc/file/eaa34c500f765",
+            "https://k2s.cc/file/d570918641193",
+            "https://k2s.cc/file/3f02c730d6dfa",
+            "https://k2s.cc/file/d5237e9a7f020",
+            "https://k2s.cc/file/3005bdc5158aa",
+            "https://k2s.cc/file/f96b670898f23",
+            "https://k2s.cc/file/6ab1cb825e7d1",
+            "https://k2s.cc/file/404d88a62b0a8",
+            "https://k2s.cc/file/c0864fa5c4f64",
+            "https://k2s.cc/file/6d4b5cb2d20c3"
+        ];
+
+        var videosPerPage = 5;
+        var totalPages = Math.ceil(videoUrls.length / videosPerPage);
+
+        var videoData = [];
+
+        for (var i = 0; i < videoUrls.length; i++) {
+            var video = {
+                url: videoUrls[i],
+                width: "500px",
+                height: "56.25%"
+            };
+            videoData.push(video);
+        }
+
+        function displayVideos(pageNumber) {
+            var container = document.getElementById("videoContainer");
+            container.innerHTML = "";
+
+            var startIndex = (pageNumber - 1) * videosPerPage;
+            var endIndex = startIndex + videosPerPage;
+
+            var videosToDisplay = videoData.slice(startIndex, endIndex);
+
+            for (var i = 0; i < videosToDisplay.length; i++) {
+                var video = videosToDisplay[i];
+
+                var scriptTag = document.createElement("script");
+                scriptTag.setAttribute("data-url", video.url);
+                scriptTag.setAttribute("data-width", video.width);
+                scriptTag.setAttribute("data-height", video.height);
+                scriptTag.setAttribute("src", "https://k2s.cc/js/preview.js");
+
+                container.appendChild(scriptTag);
+            }
+        }
+
+        function createPagination() {
+            var pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            for (var i = 1; i <= totalPages; i++) {
+                var pageLink = document.createElement("a");
+                pageLink.setAttribute("href", "javascript:void(0)");
+                pageLink.setAttribute("onclick", "displayVideos(" + i + ")");
+                pageLink.textContent = i;
+
+                pagination.appendChild(pageLink);
+            }
+        }
+
+        displayVideos(1);
+        createPagination();
+    </script>
+</body>
+</html>
