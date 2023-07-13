@@ -17,21 +17,47 @@
   <script>
     // Configuration
     var videosPerPage = 10; // Number of videos per page
-    var videoData = [
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>', 
-      // Add more video script tags as needed
-    ];
+
+    // Paste your video script tags here
+    var videoScriptTags = `
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+
+      <!-- Add more video script tags as needed -->
+    `;
 
     // Extract video information from script tags
-    var extractedVideoData = videoData.map(function (videoScript) {
-      var tempContainer = document.createElement('div');
-      tempContainer.innerHTML = videoScript;
-      var videoElement = tempContainer.firstChild;
-      return {
-        url: videoElement.getAttribute('data-url'),
-        width: videoElement.getAttribute('data-width'),
-        height: videoElement.getAttribute('data-height')
-      };
+    var extractedVideoData = [];
+    var tempContainer = document.createElement('div');
+    tempContainer.innerHTML = videoScriptTags;
+    var scriptTags = tempContainer.querySelectorAll('script');
+    scriptTags.forEach(function (scriptTag) {
+      var url = scriptTag.getAttribute('data-url');
+      var width = scriptTag.getAttribute('data-width');
+      var height = scriptTag.getAttribute('data-height');
+      extractedVideoData.push({ url: url, width: width, height: height });
     });
 
     // Calculate the total number of pages
