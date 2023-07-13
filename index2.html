@@ -1,97 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .hidden {
-      display: none;
-    }
-  </style>
 </head>
 <body>
   <!-- Video container -->
   <div id="video-container"></div>
 
-  <!-- Pagination structure -->
-  <div id="pagination"></div>
-
   <script>
-    // Configuration
-    var videosPerPage = 10; // Number of videos per page
-    var videoData = [
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-      '<script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>',
-      // Add more video script tags as needed
-    ];
+    // Paste your video script tags here
+    var videoScriptTags = `
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+      <script data-url="https://k2s.cc/file/1f7bd818baa8c" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
+
+  <!-- Add more video script tags as needed -->
+    `;
 
     // Extract video information from script tags
-    var extractedVideoData = videoData.map(function (videoScript) {
-      var tempContainer = document.createElement('div');
-      tempContainer.innerHTML = videoScript;
-      var videoElement = tempContainer.firstChild;
-      return {
-        url: videoElement.getAttribute('data-url'),
-        width: videoElement.getAttribute('data-width'),
-        height: videoElement.getAttribute('data-height')
-      };
-    });
+    var tempContainer = document.createElement('div');
+    tempContainer.innerHTML = videoScriptTags;
+    var scriptTags = tempContainer.querySelectorAll('script');
 
-    // Calculate the total number of pages
-    var totalPages = Math.ceil(extractedVideoData.length / videosPerPage);
-
-    // Function to display videos for the given page number
-    function displayVideos(pageNumber) {
-      var startIndex = (pageNumber - 1) * videosPerPage;
-      var endIndex = startIndex + videosPerPage;
-
+    // Function to load videos
+    function loadVideos() {
       var videoContainer = document.getElementById('video-container');
       videoContainer.innerHTML = '';
 
-      for (var i = startIndex; i < endIndex && i < extractedVideoData.length; i++) {
-        var videoDataItem = extractedVideoData[i];
+      scriptTags.forEach(function (scriptTag) {
         var videoElement = document.createElement('iframe');
-        videoElement.src = videoDataItem.url;
-        videoElement.style.width = videoDataItem.width;
-        videoElement.style.height = videoDataItem.height;
+        videoElement.src = scriptTag.getAttribute('data-url');
+        videoElement.style.width = scriptTag.getAttribute('data-width');
+        videoElement.style.height = scriptTag.getAttribute('data-height');
         videoContainer.appendChild(videoElement);
-      }
-    }
-
-    // Function to handle page change
-    function changePage(pageNumber) {
-      displayVideos(pageNumber);
-
-      // Update active state of pagination links/buttons
-      var paginationLinks = document.querySelectorAll('#pagination a');
-      paginationLinks.forEach(function (link) {
-        link.classList.toggle('active', link.dataset.page === pageNumber.toString());
       });
     }
 
-    // Generate pagination links/buttons
-    var paginationElement = document.getElementById('pagination');
-    for (var i = 1; i <= totalPages; i++) {
-      var link = document.createElement('a');
-      link.href = '#';
-      link.textContent = i;
-      link.dataset.page = i;
-      link.addEventListener('click', function () {
-        var pageNumber = this.dataset.page;
-        changePage(pageNumber);
-      });
-      paginationElement.appendChild(link);
-    }
-
-    // Initial video display on the first page
-    changePage(1);
+    // Load videos
+    loadVideos();
   </script>
 </body>
 </html>
