@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Embedded Videos</title>
+    <title>Embedded Videos Pages</title>
 </head>
 <body>
+    <div id="videoContainer"></div>
+
     <script>
-        // Define an array of embedded video URLs
-        var videoUrls = [
+        // Define an array of embedded video HTML snippets
+        var videoSnippets = [
 <script data-url="https://k2s.cc/file/917cf2c03b90a" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
 <script data-url="https://k2s.cc/file/6449fa1a13af3" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
 <script data-url="https://k2s.cc/file/60d9e6846a3cc" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
@@ -2322,14 +2324,19 @@
 <script data-url="https://k2s.cc/file/6d4b5cb2d20c3" data-width="500px" data-height="56.25%" src="https://k2s.cc/js/preview.js"></script>
         ];
 
-        // Generate HTML code for each video page
-        for (var i = 0; i < videoUrls.length; i++) {
-            var videoPage = '<div>';
-            videoPage += '<h1>Video Page ' + (i + 1) + '</h1>';
-            videoPage += videoUrls[i];
-            videoPage += '</div>';
+        // Generate HTML pages for each video snippet
+        for (var i = 0; i < videoSnippets.length; i++) {
+            var videoPage = '<!DOCTYPE html>\n<html>\n<head>\n<title>Embedded Video Page ' + (i + 1) + '</title>\n</head>\n<body>\n';
+            videoPage += videoSnippets[i] + '\n';
+            videoPage += '</body>\n</html>';
 
-            document.write(videoPage);
+            // Create an iframe for each generated page
+            var iframe = document.createElement('iframe');
+            iframe.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(videoPage);
+            iframe.width = '100%';
+            iframe.height = '500px';
+            iframe.style.border = 'none';
+            document.getElementById('videoContainer').appendChild(iframe);
         }
     </script>
 </body>
