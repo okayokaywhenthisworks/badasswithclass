@@ -1,97 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Embedded Videos</title>
+    <meta charset="UTF-8">
+    <title>Embedded Videos with Automatic Pages</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        
         .video-container {
-            width: 500px;
-            height: 281px; /* Assuming aspect ratio of 16:9 */
-            margin: 0 auto;
             position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
             overflow: hidden;
         }
-        
+
         .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            border: 0;
-        }
-        
-        .pagination {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .pagination button {
-            display: inline-block;
-            padding: 5px 10px;
-            margin: 0 5px;
-            background-color: #ccc;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .pagination button.active {
-            background-color: #555;
-            color: #fff;
         }
     </style>
 </head>
 <body>
-    <div class="video-container"></div>
-    <div class="pagination"></div>
-    
+    <div id="videoContainer"></div>
     <script>
-        // Define your video URLs
-        var videoUrls = [
-            "https://k2s.cc/file/f96b670898f23",
-            // Add more video URLs here
+        var videos = [
+            {
+                url: "https://k2s.cc/file/f96b670898f23",
+                width: "500px",
+                height: "56.25%"
+            },
+            // Add more videos here
         ];
-        
-        var container = document.querySelector('.video-container');
-        var pagination = document.querySelector('.pagination');
+
+        var container = document.getElementById("videoContainer");
         var currentPage = 0;
-        
-        function loadVideo(url) {
-            var iframe = document.createElement('iframe');
-            iframe.src = url;
-            container.innerHTML = '';
-            container.appendChild(iframe);
-        }
-        
-        function updatePagination() {
-            pagination.innerHTML = '';
-            for (var i = 0; i < videoUrls.length; i++) {
-                var button = document.createElement('button');
-                button.textContent = i + 1;
-                button.addEventListener('click', function (index) {
-                    return function () {
-                        currentPage = index;
-                        loadVideo(videoUrls[currentPage]);
-                        updatePagination();
-                    }
-                }(i));
-                
-                if (i === currentPage) {
-                    button.classList.add('active');
-                }
-                
-                pagination.appendChild(button);
+        var videosPerPage = 3;
+        var totalPages = Math.ceil(videos.length / videosPerPage);
+
+        function displayVideos(page) {
+            container.innerHTML = "";
+
+            var startIndex = page * videosPerPage;
+            var endIndex = startIndex + videosPerPage;
+
+            for (var i = startIndex; i < endIndex && i < videos.length; i++) {
+                var video = videos[i];
+                var videoElement = createVideoElement(video.url, video.width, video.height);
+                container.appendChild(videoElement);
             }
         }
-        
-        // Load the initial video
-        loadVideo(videoUrls[currentPage]);
-        
-        // Update pagination buttons
-        updatePagination();
+
+        function createVideoElement(url, width, height) {
+            var videoDiv = document.createElement("div");
+            videoDiv.className = "video-container";
+
+            var iframe = document.createElement("iframe");
+            iframe.src = url;
+            iframe.style.width = width;
+            iframe.style.height = height;
+            iframe.setAttribute("allowfullscreen", "");
+            iframe.setAttribute("frameborder", "0");
+            iframe.setAttribute("scrolling", "no");
+
+            videoDiv.appendChild(iframe);
+            return videoDiv;
+        }
+
+        function goToNextPage() {
+            currentPage++;
+            if (currentPage >= totalPages) {
+                currentPage = 0;
+            }
+            displayVideos(currentPage);
+        }
+
+        function goToPreviousPage() {
+            currentPage--;
+            if (currentPage < 0) {
+                currentPage = totalPages - 1;
+            }
+            displayVideos(currentPage);
+        }
+
+        // Display the first page of videos
+        displayVideos(currentPage);
+
+        // Add navigation buttons for next and previous pages
+        var nextButton = document.createElement("button");
+        nextButton.textContent = "Next";
+        nextButton.addEventListener("click", goToNextPage);
+        document.body.appendChild(nextButton);
+
+        var prevButton = document.createElement("button");
+        prevButton.textContent = "Previous";
+        prevButton.addEventListener("click", goToPreviousPage);
+        document.body.appendChild(prevButton);
     </script>
 </body>
 </html>
