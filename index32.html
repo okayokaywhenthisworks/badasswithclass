@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Embedded Videos</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Video wrapper styles */
+        .video-wrapper {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Pagination styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: #000;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .pagination a.active {
+            background-color: #4285F4;
+            color: #fff;
+            border-color: #4285F4;
+        }
+
+        .pagination a:hover {
+            background-color: #3367D6;
+            color: #fff;
+            border-color: #3367D6;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-wrapper">
+        <div id="videoContainer"></div>
+    </div>
+
+    <div class="pagination" id="pagination"></div>
+
+    <script>
+        var videoUrls = [
+            "https://k2s.cc/file/917cf2c03b90a",
+            "https://k2s.cc/file/6449fa1a13af3",
+            "https://k2s.cc/file/60d9e6846a3cc",
+            // ... rest of the video URLs ...
+            "https://k2s.cc/file/404d88a62b0a8",
+            "https://k2s.cc/file/c0864fa5c4f64",
+            "https://k2s.cc/file/6d4b5cb2d20c3"
+        ];
+
+        var videosPerPage = 5;
+        var totalPages = Math.ceil(videoUrls.length / videosPerPage);
+
+        function displayVideos(pageNumber) {
+            var container = document.getElementById("videoContainer");
+            container.innerHTML = "";
+
+            var startIndex = (pageNumber - 1) * videosPerPage;
+            var endIndex = startIndex + videosPerPage;
+
+            var videosToDisplay = videoUrls.slice(startIndex, endIndex);
+
+            for (var i = 0; i < videosToDisplay.length; i++) {
+                var videoUrl = videosToDisplay[i];
+
+                var scriptTag = document.createElement("script");
+                scriptTag.setAttribute("data-url", videoUrl);
+                scriptTag.setAttribute("data-width", "500px");
+                scriptTag.setAttribute("data-height", "56.25%");
+                scriptTag.setAttribute("src", "https://k2s.cc/js/preview.js");
+
+                container.appendChild(scriptTag);
+            }
+        }
+
+        function createPagination(currentPage) {
+            var pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            var startPage = Math.max(1, currentPage - 4);
+            var endPage = Math.min(totalPages, currentPage + 4);
+
+            for (var i = startPage; i <= endPage; i++) {
+                var pageLink = createPageLink(i, i === currentPage);
+                pagination.appendChild(pageLink);
+            }
+        }
+
+        function createPageLink(pageNumber, isActive) {
+            var pageLink = document.createElement("a");
+            pageLink.setAttribute("href", "javascript:void(0)");
+            pageLink.textContent = pageNumber;
+
+            if (isActive) {
+                pageLink.classList.add("active");
+            }
+
+            pageLink.addEventListener("click", function () {
+                displayVideos(pageNumber);
+                createPagination(pageNumber);
+            });
+
+            return pageLink;
+        }
+
+        displayVideos(1);
+        createPagination(1);
+    </script>
+</body>
+</html>
