@@ -64,11 +64,26 @@
             background-color: #fff;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
+        /* Clearfix for video item container */
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .video-item {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="video-wrapper">
-        <div id="videoContainer"></div>
+        <div id="videoContainer" class="clearfix"></div>
     </div>
 
     <div class="pagination" id="pagination"></div>
